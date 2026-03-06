@@ -166,6 +166,21 @@ body {
   border-bottom: 1px solid #e2e8f0;
 }
 
+/* 回答時間ボタンは1行に収める（折り返し防止） */
+.screen-title .title-menu .time-limit-options {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 6px;
+}
+
+.screen-title .title-menu .time-limit-btn {
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 8px 4px;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
 .screen-title .title-menu .time-limit-label {
   margin: 0 0 10px;
   font-size: 0.8rem;
