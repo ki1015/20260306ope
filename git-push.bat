@@ -15,7 +15,8 @@ if %errorlevel% neq 0 (
 )
 
 git add .
-git commit -m "オペ戦クイズアプリを追加"
+git status --short
+git diff --cached --quiet || git commit -m "回答時間を制限なし・10秒・20秒・30秒に変更"
 git remote remove origin 2>nul
 git remote add origin https://github.com/ki1015/202603006ope.git
 git branch -M main

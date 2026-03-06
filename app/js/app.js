@@ -24,6 +24,7 @@
 
   var DATA_URL = '../data/quiz_questions.json';
   var QUESTIONS_PER_SESSION = 10;
+  // 回答時間: 制限なし / 10秒 / 20秒 / 30秒
   var TIME_LIMIT_OPTIONS = [
     { value: 0, label: '制限なし' },
     { value: 10, label: '10秒' },
