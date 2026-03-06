@@ -364,7 +364,7 @@
       resultScreen.classList.add('is-wrong');
     }
     var correctLabelTimeUp = q.type === 'boolean' ? ['○', '×'][correctIndex] : String.fromCharCode(65 + correctIndex);
-    els.explanationText.textContent = '（時間切れのため不正解）　　正解: ' + correctLabelTimeUp + '\n\n' + (q.explanation || '（解説なし）');
+    els.explanationText.textContent = formatExplanation('時間切れ', correctLabelTimeUp, q.explanation, true);
     if (els.resultModeLabel) {
       els.resultModeLabel.textContent = state.challengeModeLabel || '';
       els.resultModeLabel.style.display = state.challengeModeLabel ? 'block' : 'none';
@@ -471,8 +471,7 @@
     }
     var userLabel = q.type === 'boolean' ? ['○', '×'][idx] : String.fromCharCode(65 + idx);
     var correctLabel = q.type === 'boolean' ? ['○', '×'][correctIndex] : String.fromCharCode(65 + correctIndex);
-    var answerLine = 'あなたの回答: ' + userLabel + '　　正解: ' + correctLabel;
-    els.explanationText.textContent = answerLine + '\n\n' + (q.explanation || '（解説なし）');
+    els.explanationText.textContent = formatExplanation(userLabel, correctLabel, q.explanation, false);
     if (els.resultModeLabel) {
       els.resultModeLabel.textContent = state.challengeModeLabel || '';
       els.resultModeLabel.style.display = state.challengeModeLabel ? 'block' : 'none';
@@ -566,6 +565,32 @@
     var div = document.createElement('div');
     div.textContent = s;
     return div.innerHTML;
+  }
+
+  function formatExplanation(yourAnswerLabel, correctLabel, explanation, isTimeUp) {
+    var raw = explanation || '（解説なし）';
+    var reason = raw;
+    var example = '';
+    var idx = raw.indexOf('例：');
+    if (idx === -1) idx = raw.indexOf('例:');
+    if (idx !== -1) {
+      reason = raw.slice(0, idx).trim();
+      example = raw.slice(idx).trim();
+    }
+    var lines = [
+      'あなたの回答',
+      yourAnswerLabel,
+      '',
+      '正解',
+      correctLabel,
+      '',
+      '理由',
+      reason,
+      '',
+      '具体例',
+      example || '（特になし）'
+    ];
+    return lines.join('\n');
   }
 
   function renderTimeLimitOptions() {
