@@ -26,9 +26,8 @@
   var QUESTIONS_PER_SESSION = 10;
   var TIME_LIMIT_OPTIONS = [
     { value: 0, label: '制限なし' },
-    { value: 5, label: '5秒' },
     { value: 10, label: '10秒' },
-    { value: 15, label: '15秒' },
+    { value: 20, label: '20秒' },
     { value: 30, label: '30秒' }
   ];
 
